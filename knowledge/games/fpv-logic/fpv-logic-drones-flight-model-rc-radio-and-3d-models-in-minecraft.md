@@ -38,8 +38,8 @@ tags: [content-port, mashup, unreal, blueprint, kismet, gvas, unversioned-proper
 >
 > A performance pack was added too: Sodium, Distant Horizons, Chunky auto pre-generation, and others.
 >
-> Verified with a headless sim bench and two scripted in-game autotests with screenshots; not yet with a physical
-> radio.
+> Verified with a headless sim bench and two scripted in-game autotests with screenshots. The player then
+> confirmed a RadioMaster TX15 over USB and an Iris shader pack in their own install.
 
 ## Setup
 - Windows 11. FPV LOGIC on Steam:
@@ -202,8 +202,11 @@ Pattern 1 of mashup-mods (port the logic). Minecraft is the host; FPV LOGIC is o
 
   - Flies one drone item: its own physics, prop blur, and landing height = the model's real bottom (0.024 m).
   - Checks the item icons.
-- **Not verified:** a physical radio (SDL2 vs SDL3 axis order should match; Learn/Calibrate exist), dedicated
-  servers, starting from the official launcher, shader packs with the models.
+- **Confirmed by the player in their install:**
+  - A RadioMaster TX15 (EdgeTX, USB joystick mode) steers the drones with the channel map from FPV LOGIC's
+    Controller save. SDL2 (FPV LOGIC) and SDL3 (Minecraft) report the axes in the same order.
+  - The models render correctly with an Iris shader pack.
+- **Not verified:** dedicated servers, and the frame cost of the models with a shader pack.
 
 ## Gotchas
 1. **`/summon` from the test failed: "Incomplete (expected 3 coordinates)".**
@@ -303,8 +306,7 @@ Pattern 1 of mashup-mods (port the logic). Minecraft is the host; FPV LOGIC is o
 - **Torque after slow hits.** Exact behaviour of FPV LOGIC's 0.2 s torque mode (depends on Chaos inertia from the
   collision mesh); approximated as a first-order rate response.
 - **Fixed-wing.** The fixed-wing drone (`Wing-A`) shares the BP but needs its own aerodynamics; not ported.
-- **Real radio.** SDL2 (FPV LOGIC) vs SDL3 (Minecraft) axis order on EdgeTX joysticks.
 - **Material formulas.** The base materials' node graphs aren't in the cook (only compiled shaders). The two
   colour-mask formulas above were inferred from the textures and parameter names, and match the look; not proven
   from shader code.
-- **Shader packs.** With Iris shader packs, drones are drawn twice (shadow pass). Not measured.
+- **Shader packs.** They work, but drones are drawn again in the shadow pass; the extra cost was not measured.
