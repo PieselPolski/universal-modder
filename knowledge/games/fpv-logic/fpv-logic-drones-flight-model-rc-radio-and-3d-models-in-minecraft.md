@@ -293,6 +293,9 @@ Pattern 1 of mashup-mods (port the logic). Minecraft is the host; FPV LOGIC is o
   palette.
 - The real models are converted on the player's machine from their own install into the game's config folder.
   The mod jar contains no FPV LOGIC data.
+- Keep the converter output in `config/fpvcraft/` (drone table, meshes, textures) on your own PC: it is FPV
+  LOGIC's content, so don't share or upload it, and leave `config/fpvcraft` out of modpack and instance exports.
+  Each player runs the converter on their own install.
 - The motor whine is synthesized with ffmpeg `aevalsrc` (seamless 2 s loop of integer-Hz partials, mono Vorbis).
 - Wind, gate and lap sounds reference vanilla sound files through `sounds.json`.
 
